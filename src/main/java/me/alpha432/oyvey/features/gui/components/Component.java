@@ -32,7 +32,7 @@ public class Component
         super(name);
         this.x = x;
         this.y = y;
-        this.width = 88;
+        this.width = 98;
         this.height = 18;
         this.open = open;
         this.setupItems();
@@ -53,6 +53,7 @@ public class Component
         this.drag(mouseX, mouseY);
         counter1 = new int[]{1};
         float totalItemHeight = this.open ? this.getTotalItemHeight() - 2.0f : 0.0f;
+        int colorback = ColorUtil.toARGB(ClickGui.getInstance().topRed.getValue(), ClickGui.getInstance().topGreen.getValue(), ClickGui.getInstance().topBlue.getValue(), ClickGui.getInstance().alpha.getValue());
         int color = ColorUtil.toARGB(ClickGui.getInstance().topRed.getValue(), ClickGui.getInstance().topGreen.getValue(), ClickGui.getInstance().topBlue.getValue(), 255);
         Gui.drawRect(this.x, this.y - 1, this.x + this.width, this.y + this.height - 6, ClickGui.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()).getRGB() : color);
         if (this.open) {

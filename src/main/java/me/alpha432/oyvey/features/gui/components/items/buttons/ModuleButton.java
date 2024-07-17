@@ -76,6 +76,7 @@ public class ModuleButton
             if (HUD.getInstance().magenDavid.getValue().booleanValue()) {
                 mc.getTextureManager().bindTexture(this.logo);
                 ModuleButton.drawCompleteImage(this.x - 1.5f + (float) this.width - 7.4f, this.y - 2.2f - (float) OyVeyGui.getClickGui().getTextOffset(), 8, 8);
+                
             }
             if (this.subOpen) {
                 float height = 1.0f;

@@ -15,6 +15,7 @@ import me.alpha432.oyvey.features.modules.misc.*;
 import me.alpha432.oyvey.features.modules.movement.*;
 import me.alpha432.oyvey.features.modules.player.*;
 import me.alpha432.oyvey.features.modules.render.*;
+import me.alpha432.oyvey.features.modules.render.JumpCircle.JumpCircle;
 import me.alpha432.oyvey.util.Util;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
@@ -43,8 +44,10 @@ public class ModuleManager
         this.modules.add(new BlockHighlight());
         this.modules.add(new HoleESP());
         this.modules.add(new Skeleton());
+        this.modules.add(new JumpCircle());
         this.modules.add(new Wireframe());
-
+        this.modules.add(new AutoXP());
+        
         this.modules.add(new HandChams());
 ;
         this.modules.add(new FakePlayer());
