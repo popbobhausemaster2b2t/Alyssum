@@ -4,6 +4,7 @@ import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.event.events.Render3DEvent;
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
+import me.alpha432.oyvey.features.modules.client.Colors;
 import me.alpha432.oyvey.features.setting.Setting;
 import me.alpha432.oyvey.util.BlockUtil;
 import net.minecraft.client.gui.Gui;
@@ -68,7 +69,7 @@ public class Skeleton
             if (OyVey.friendManager.isFriend(e.getName())) {
                 GlStateManager.color(0.0f, 191.0f, 230.0f, (float) this.alpha.getValue().intValue());
             } else {
-                GlStateManager.color((float) ClickGui.getInstance().red.getValue().intValue() / 255.0f, (float) ClickGui.getInstance().green.getValue().intValue() / 255.0f, (float) ClickGui.getInstance().blue.getValue().intValue() / 255.0f, (float) this.alpha.getValue().intValue());
+                GlStateManager.color((float) Colors.getInstance().red.getValue().intValue() / 255.0f, (float) Colors.getInstance().green.getValue().intValue() / 255.0f, (float) Colors.getInstance().blue.getValue().intValue() / 255.0f, (float) this.alpha.getValue().intValue());
             }
             Vec3d vec = this.getVec3(event, e);
             double x = vec.x - Skeleton.mc.getRenderManager().renderPosX;

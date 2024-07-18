@@ -1,6 +1,7 @@
 package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.client.ClickGui;
+import me.alpha432.oyvey.features.modules.client.Colors;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.model.ModelBase;
@@ -49,9 +50,9 @@ public class MixinRenderEnderCrystal extends Render<EntityEnderCrystal> {
             GlStateManager.enableOutlineMode(getTeamColor(entity));
         }
         if (Wireframe.getINSTANCE().isOn() && (Wireframe.getINSTANCE()).crystals.getValue().booleanValue()) {
-            float red = (ClickGui.getInstance()).red.getValue().intValue() / 255.0F;
-            float green = (ClickGui.getInstance()).green.getValue().intValue() / 255.0F;
-            float blue = (ClickGui.getInstance()).blue.getValue().intValue() / 255.0F;
+            float red = (Colors.getInstance()).red.getValue().intValue() / 255.0F;
+            float green = (Colors.getInstance()).green.getValue().intValue() / 255.0F;
+            float blue = (Colors.getInstance()).blue.getValue().intValue() / 255.0F;
             if ((Wireframe.getINSTANCE()).cMode.getValue().equals(Wireframe.RenderMode.WIREFRAME) && (Wireframe.getINSTANCE()).crystalModel.getValue().booleanValue())
                 this.modelEnderCrystalNoBase.render(entity, 0.0F, f * 3.0F, f1 * 0.2F, 0.0F, 0.0F, 0.0625F);
             GlStateManager.pushMatrix();
@@ -66,14 +67,14 @@ public class MixinRenderEnderCrystal extends Render<EntityEnderCrystal> {
             GL11.glBlendFunc(770, 771);
             GL11.glDisable(2929);
             GL11.glDepthMask(false);
-            GL11.glColor4f((ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : red, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : green, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : blue, (Wireframe.getINSTANCE()).cAlpha.getValue().floatValue() / 255.0F);
+            GL11.glColor4f((Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : red, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : green, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : blue, (Wireframe.getINSTANCE()).cAlpha.getValue().floatValue() / 255.0F);
             if ((Wireframe.getINSTANCE()).cMode.getValue().equals(Wireframe.RenderMode.WIREFRAME))
                 GL11.glLineWidth((Wireframe.getINSTANCE()).crystalLineWidth.getValue().floatValue());
             this.modelEnderCrystalNoBase.render(entity, 0.0F, f * 3.0F, f1 * 0.2F, 0.0F, 0.0F, 0.0625F);
             GL11.glDisable(2896);
             GL11.glEnable(2929);
             GL11.glDepthMask(true);
-            GL11.glColor4f((ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : red, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : green, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : blue, (Wireframe.getINSTANCE()).cAlpha.getValue().floatValue() / 255.0F);
+            GL11.glColor4f((Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : red, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : green, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : blue, (Wireframe.getINSTANCE()).cAlpha.getValue().floatValue() / 255.0F);
             if ((Wireframe.getINSTANCE()).cMode.getValue().equals(Wireframe.RenderMode.WIREFRAME))
                 GL11.glLineWidth((Wireframe.getINSTANCE()).crystalLineWidth.getValue().floatValue());
             this.modelEnderCrystalNoBase.render(entity, 0.0F, f * 3.0F, f1 * 0.2F, 0.0F, 0.0F, 0.0625F);
