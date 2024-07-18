@@ -10,6 +10,7 @@ import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.client.FontMod;
 import me.alpha432.oyvey.features.modules.client.HUD;
+import me.alpha432.oyvey.features.modules.client.Notifications;
 import me.alpha432.oyvey.features.modules.combat.*;
 import me.alpha432.oyvey.features.modules.misc.*;
 import me.alpha432.oyvey.features.modules.movement.*;
@@ -52,17 +53,21 @@ public class ModuleManager
         this.modules.add(new JumpCircle());
         this.modules.add(new Wireframe());
         this.modules.add(new AutoXP());
-        
+        this.modules.add(new CustomFov());
+        this.modules.add(new Aspect());
+       
         this.modules.add(new HandChams());
-;
         this.modules.add(new FakePlayer());
         this.modules.add(new ReverseStep());
-
+        this.modules.add(new AutoCrystal());
+ 
         this.modules.add(new PearlNotify());
         this.modules.add(new PopCounter());
 
         this.modules.add(new AutoTrap());
     
+        //Notifications
+        this.modules.add(new Notifications());
         this.modules.add(new Criticals());
 
         this.modules.add(new AutoArmor());

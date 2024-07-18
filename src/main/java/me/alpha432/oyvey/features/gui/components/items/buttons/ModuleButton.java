@@ -91,10 +91,10 @@ public class ModuleButton
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         if (!this.items.isEmpty()) {
-            if (HUD.getInstance().magenDavid.getValue().booleanValue()) {
-                mc.getTextureManager().bindTexture(this.logo);
-                ModuleButton.drawCompleteImage(this.x - 1.5f + (float) this.width - 7.4f, this.y - 2.2f - (float) OyVeyGui.getClickGui().getTextOffset(), 8, 8);
-            }
+            //if (HUD.getInstance().magenDavid.getValue().booleanValue()) {
+              //  mc.getTextureManager().bindTexture(this.logo);
+               // ModuleButton.drawCompleteImage(this.x - 1.5f + (float) this.width - 7.4f, this.y - 2.2f - (float) OyVeyGui.getClickGui().getTextOffset(), 8, 8);
+       
             if (ClickGui.getInstance().future.getValue()) {
                 GlStateManager.pushMatrix();
                 GlStateManager.enableBlend();
@@ -121,9 +121,11 @@ public class ModuleButton
                     }
                     item.update();
                 }
+          
             }
         }
     }
+    
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {

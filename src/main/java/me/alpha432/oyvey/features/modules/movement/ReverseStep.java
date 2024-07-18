@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 public class ReverseStep
         extends Module {
     private static ReverseStep INSTANCE = new ReverseStep();
-    private final Setting<Boolean> twoBlocks = this.register(new Setting<Boolean>("2Blocks", Boolean.FALSE));
+    //private final Setting<Boolean> twoBlocks = this.register(new Setting<Boolean>("2Blocks", Boolean.FALSE));
 
     public ReverseStep() {
         super("ReverseStep", "ReverseStep.", Module.Category.MOVEMENT, true, false, false);

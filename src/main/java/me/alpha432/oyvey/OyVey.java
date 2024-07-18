@@ -8,12 +8,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = "oyvey", name = "OyVey", version = "0.0.3")
+@Mod(modid = "alyssum", name = "Alyssum", version = "0.0.1")
 public class OyVey {
-    public static final String MODID = "oyvey";
-    public static final String MODNAME = "OyVey";
-    public static final String MODVER = "0.0.3";
-    public static final Logger LOGGER = LogManager.getLogger("OyVey");
+    public static final String MODID = "alyssum";
+    public static final String MODNAME = "Alyssum";
+    public static final String MODVER = "0.0.1";
+    public static final Logger LOGGER = LogManager.getLogger("Alyssum");
     public static CommandManager commandManager;
     public static FriendManager friendManager;
     public static ModuleManager moduleManager;
@@ -26,6 +26,9 @@ public class OyVey {
     public static PositionManager positionManager;
     public static SpeedManager speedManager;
     public static ReloadManager reloadManager;
+    //public static ModuleManager moduleManager;
+
+  //  ModuleManager
     public static FileManager fileManager;
     public static ConfigManager configManager;
     public static ServerManager serverManager;
@@ -62,19 +65,19 @@ public class OyVey {
         positionManager = new PositionManager();
         configManager = new ConfigManager();
         holeManager = new HoleManager();
-        LOGGER.info("Managers loaded.");
+       // LOGGER.info("Managers loaded.");
         moduleManager.init();
-        LOGGER.info("Modules loaded.");
+     //   LOGGER.info("Modules loaded.");
         configManager.init();
         eventManager.init();
-        LOGGER.info("EventManager loaded.");
+       // LOGGER.info("EventManager loaded.");
         textManager.init(true);
         moduleManager.onLoad();
-        LOGGER.info("OyVey successfully loaded!\n");
+      //  LOGGER.info("OyVey successfully loaded!\n");
     }
 
     public static void unload(boolean unload) {
-        LOGGER.info("\n\nUnloading OyVey by Alpha432");
+       // LOGGER.info("\n\nUnloading OyVey by Alpha432");
         if (unload) {
             reloadManager = new ReloadManager();
             reloadManager.init(commandManager != null ? commandManager.getPrefix() : ".");
@@ -95,7 +98,7 @@ public class OyVey {
         inventoryManager = null;
         moduleManager = null;
         textManager = null;
-        LOGGER.info("OyVey unloaded!\n");
+     //   LOGGER.info("OyVey unloaded!\n");
     }
 
     public static void reload() {
@@ -115,12 +118,12 @@ public class OyVey {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER.info("I am gona gas you kike - Alpha432");
+     //   LOGGER.info("I am g");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        Display.setTitle("OyVey v0.0.3");
+        Display.setTitle("Alyssum v0.0.1");
         OyVey.load();
     }
 }

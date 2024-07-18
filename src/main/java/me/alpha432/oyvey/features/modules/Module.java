@@ -8,8 +8,10 @@ import me.alpha432.oyvey.event.events.Render3DEvent;
 import me.alpha432.oyvey.features.Feature;
 import me.alpha432.oyvey.features.command.Command;
 import me.alpha432.oyvey.features.modules.client.HUD;
+import me.alpha432.oyvey.features.modules.client.Notifications;
 import me.alpha432.oyvey.features.setting.Bind;
 import me.alpha432.oyvey.features.setting.Setting;
+import me.alpha432.oyvey.manager.ModuleManager;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -101,7 +103,7 @@ public class Module
         this.enabled.setValue(Boolean.TRUE);
         this.onToggle();
         this.onEnable();
-        if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
+        if (OyVey.moduleManager.getModuleByClass(Notifications.class).isEnabled()) {
             TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.GREEN + this.getDisplayName() + " toggled on.");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
@@ -115,7 +117,7 @@ public class Module
             MinecraftForge.EVENT_BUS.unregister(this);
         }
         this.enabled.setValue(false);
-        if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
+        if (OyVey.moduleManager.getModuleByClass(Notifications.class).isEnabled()) {
             TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.RED + this.getDisplayName() + " toggled off.");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
@@ -188,6 +190,7 @@ public class Module
         RENDER("Render"),
         MOVEMENT("Movement"),
         PLAYER("Player"),
+      //  EXPLOIT("EXPLOIT"),
         CLIENT("Client");
 
         private final String name;

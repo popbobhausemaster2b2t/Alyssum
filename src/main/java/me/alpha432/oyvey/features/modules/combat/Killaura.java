@@ -1,6 +1,8 @@
 package me.alpha432.oyvey.features.modules.combat;
 
+
 import me.alpha432.oyvey.features.modules.Module;
+import me.alpha432.oyvey.features.modules.Module.Category;
 import me.alpha432.oyvey.features.setting.Setting;
 import me.alpha432.oyvey.util.DamageUtil;
 import me.alpha432.oyvey.util.EntityUtil;
@@ -12,7 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class Killaura extends Module {
 
     public Killaura() {
-        super("Killaura", "auralol", Category.COMBAT, true, false, false);
+        super("Aura", "auralol", Category.COMBAT, true, false, false);
     }
 	
     public static Entity target;
@@ -95,6 +97,4 @@ public class Killaura extends Module {
             return target.getName();
         return null;
     }
-
-
 }
