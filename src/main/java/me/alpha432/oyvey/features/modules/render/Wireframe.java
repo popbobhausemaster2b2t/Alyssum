@@ -20,7 +20,7 @@ public class Wireframe
     public Setting<Boolean> crystalModel = this.register(new Setting<Boolean>("CrystalModel", Boolean.FALSE));
 
     public Wireframe() {
-        super("Wireframe", "Draws a wireframe esp around other players.", Module.Category.RENDER, false, false, false);
+        super("Chams", "Draws a wireframe esp around other players.", Module.Category.RENDER, false, false, false);
         this.setInstance();
     }
 

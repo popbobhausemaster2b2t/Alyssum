@@ -20,18 +20,12 @@ import me.alpha432.oyvey.features.setting.Setting;
 
 public class KillEffect
         extends Module {
-    public Setting<Boolean> thunder = this.register(new Setting<Boolean>("Thunder", true));
-    public Setting<Integer> numbersThunder = this.register(new Setting<Integer>("Number Thunder", 1, 1, 10));
-    public Setting<Boolean> sound = this.register(new Setting<Boolean>("Sound", true));
-    public Setting<Integer> numberSound = this.register(new Setting<Integer>("Number Sound", 1, 1, 10));
-    public Setting<Integer> timeActive = this.register(new Setting<Integer>("TimeActive", 20, 0, 50));
-    public Setting<Boolean> lightning = this.register(new Setting<Boolean>("Lightning", true));
-    public Setting<Boolean> totemPop = this.register(new Setting<Boolean>("TotemPop", true));
-    public Setting<Boolean> totemPopSound = this.register(new Setting<Boolean>("TotemPopSound", false));
     public Setting<Boolean> firework = this.register(new Setting<Boolean>("FireWork", false));
-    public Setting<Boolean> fire = this.register(new Setting<Boolean>("Fire", false));
-    public Setting<Boolean> water = this.register(new Setting<Boolean>("Water", false));
-    public Setting<Boolean> smoke = this.register(new Setting<Boolean>("Smoke", false));
+    public Setting<Boolean> thunder = this.register(new Setting<Boolean>("Thunder", true));
+    public Setting<Integer> numbersThunder = this.register(new Setting<Integer>("Number Thunder", 1, 1, 10, v -> this.thunder.getValue()));
+    public Setting<Boolean> sound = this.register(new Setting<Boolean>("Sound", true, v -> this.thunder.getValue()));
+    public Setting<Integer> numberSound = this.register(new Setting<Integer>("Number Sound", 1, 1, 10, v -> this.thunder.getValue()));
+    public Setting<Integer> timeActive = this.register(new Setting<Integer>("TimeActive", 20, 0, 50, v -> this.thunder.getValue()));
     public Setting<Boolean> players = this.register(new Setting<Boolean>("Players", true));
     public Setting<Boolean> animals = this.register(new Setting<Boolean>("Animals", true));
     public Setting<Boolean> mobs = this.register(new Setting<Boolean>("Mobs", true));
@@ -82,28 +76,28 @@ public class KillEffect
             return;
         }
         if (this.shouldRenderParticle(event.getEntity())) {
-            if (this.lightning.getValue().booleanValue()) {
+            if (this.thunder.getValue().booleanValue()) {
                 KillEffect.mc.world.addEntityToWorld(-999, (Entity)new EntityLightningBolt((World)KillEffect.mc.world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, true));
             }
-            if (this.totemPop.getValue().booleanValue()) {
-                this.totemPop(event.getEntity());
-            }
+            //if (this.totemPop.getValue().booleanValue()) {
+           //     this.totemPop(event.getEntity());
+          //  }
             if (this.firework.getValue().booleanValue()) {
                 KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.FIREWORKS_SPARK, this.timeActive.getValue().intValue());
             }
-            if (this.fire.getValue().booleanValue()) {
-                KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.FLAME, this.timeActive.getValue().intValue());
-                KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.DRIP_LAVA, this.timeActive.getValue().intValue());
+          //  if (this.fire.getValue().booleanValue()) {
+          //      KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.FLAME, this.timeActive.getValue().intValue());
+          //      KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.DRIP_LAVA, this.timeActive.getValue().intValue());
+          //  }
+           // if (this.water.getValue().booleanValue()) {
+           //     KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.WATER_BUBBLE, this.timeActive.getValue().intValue());
+           //     KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.WATER_DROP, this.timeActive.getValue().intValue());
             }
-            if (this.water.getValue().booleanValue()) {
-                KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.WATER_BUBBLE, this.timeActive.getValue().intValue());
-                KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.WATER_DROP, this.timeActive.getValue().intValue());
+           // if (this.smoke.getValue().booleanValue()) {
+            //    KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.SMOKE_NORMAL, this.timeActive.getValue().intValue());
             }
-            if (this.smoke.getValue().booleanValue()) {
-                KillEffect.mc.effectRenderer.emitParticleAtEntity(event.getEntity(), EnumParticleTypes.SMOKE_NORMAL, this.timeActive.getValue().intValue());
-            }
-        }
-    }
+        
+    
 
     public boolean shouldRenderParticle(Entity entity) {
         return entity != KillEffect.mc.player && (this.all.getValue() != false || entity instanceof EntityPlayer && this.players.getValue() != false || entity instanceof EntityMob || entity instanceof EntitySlime && this.mobs.getValue() != false || entity instanceof EntityAnimal && this.animals.getValue() != false);
@@ -111,9 +105,9 @@ public class KillEffect
 
     public void totemPop(Entity entity) {
         KillEffect.mc.effectRenderer.emitParticleAtEntity(entity, EnumParticleTypes.TOTEM, this.timeActive.getValue().intValue());
-        if (this.totemPopSound.getValue().booleanValue()) {
-            KillEffect.mc.world.playSound(entity.posX, entity.posY, entity.posZ, SoundEvents.ITEM_TOTEM_USE, entity.getSoundCategory(), 1.0f, 1.0f, false);
-        }
+    //    if (this.totemPopSound.getValue().booleanValue()) {
+       //     KillEffect.mc.world.playSound(entity.posX, entity.posY, entity.posZ, SoundEvents.ITEM_TOTEM_USE, entity.getSoundCategory(), 1.0f, 1.0f, false);
+       // }
     }
 }
 

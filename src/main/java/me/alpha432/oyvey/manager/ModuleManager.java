@@ -51,10 +51,18 @@ public class ModuleManager
         this.modules.add(new Fullbright());
         this.modules.add(new Skeleton());
         this.modules.add(new JumpCircle());
+        this.modules.add(new NoRender());
+       // NoRender
         this.modules.add(new Wireframe());
         this.modules.add(new AutoXP());
         this.modules.add(new CustomFov());
+        this.modules.add(new MultiTask());
+        //Velocity
+        this.modules.add(new Velocity());
         this.modules.add(new Aspect());
+        this.modules.add(new FastXP());
+        
+        
        
         this.modules.add(new HandChams());
         this.modules.add(new FakePlayer());
@@ -63,6 +71,8 @@ public class ModuleManager
  
         this.modules.add(new PearlNotify());
         this.modules.add(new PopCounter());
+        this.modules.add(new ChinaHat());
+     //   ChinaHat
 
         this.modules.add(new AutoTrap());
     
@@ -73,7 +83,7 @@ public class ModuleManager
         this.modules.add(new AutoArmor());
         this.modules.add(new KillEffect());
         
-        this.modules.add(new Speed());
+        this.modules.add(new Strafe());
         this.modules.add(new Step());
         this.modules.add(new ESP());
 

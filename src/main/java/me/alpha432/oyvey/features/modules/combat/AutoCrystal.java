@@ -43,11 +43,6 @@ public class AutoCrystal
     private final Timer preditTimer = new Timer();
     private final Timer manualTimer = new Timer();
     private final Setting<Integer> attackFactor = this.register(new Setting<Integer>("PredictDelay", 0, 0, 200));
-    private final Setting<Integer> red = this.register(new Setting<Integer>("Red", 0, 0, 255));
-    private final Setting<Integer> green = this.register(new Setting<Integer>("Green", 255, 0, 255));
-    private final Setting<Integer> blue = this.register(new Setting<Integer>("Blue", 0, 0, 255));
-    private final Setting<Integer> alpha = this.register(new Setting<Integer>("Alpha", 255, 0, 255));
-    private final Setting<Integer> boxAlpha = this.register(new Setting<Integer>("BoxAlpha", 125, 0, 255));
     private final Setting<Float> lineWidth = this.register(new Setting<Float>("LineWidth", Float.valueOf(1.0f), Float.valueOf(0.1f), Float.valueOf(5.0f)));
     public Setting<Boolean> place = this.register(new Setting<Boolean>("Place", true));
     public Setting<Float> placeDelay = this.register(new Setting<Float>("PlaceDelay", Float.valueOf(4.0f), Float.valueOf(0.0f), Float.valueOf(300.0f)));
@@ -73,13 +68,18 @@ public class AutoCrystal
     public Setting<Float> minArmor = this.register(new Setting<Float>("MinArmor", Float.valueOf(4.0f), Float.valueOf(0.1f), Float.valueOf(80.0f)));
     public Setting<SwingMode> swingMode = this.register(new Setting<SwingMode>("Swing", SwingMode.MainHand));
     public Setting<Boolean> render = this.register(new Setting<Boolean>("Render", true));
-    public Setting<Boolean> renderDmg = this.register(new Setting<Boolean>("RenderDmg", true));
+    public Setting<Boolean> renderDmg = this.register(new Setting<Boolean>("RenderDmg", false));
     public Setting<Boolean> box = this.register(new Setting<Boolean>("Box", true));
-    public Setting<Boolean> outline = this.register(new Setting<Boolean>("Outline", true));
+    public Setting<Boolean> outline = this.register(new Setting<Boolean>("Outline", false));
     private final Setting<Integer> cRed = this.register(new Setting<Object>("OL-Red", Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(255), v -> this.outline.getValue()));
     private final Setting<Integer> cGreen = this.register(new Setting<Object>("OL-Green", Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(255), v -> this.outline.getValue()));
     private final Setting<Integer> cBlue = this.register(new Setting<Object>("OL-Blue", Integer.valueOf(255), Integer.valueOf(0), Integer.valueOf(255), v -> this.outline.getValue()));
     private final Setting<Integer> cAlpha = this.register(new Setting<Object>("OL-Alpha", Integer.valueOf(255), Integer.valueOf(0), Integer.valueOf(255), v -> this.outline.getValue()));
+    private final Setting<Integer> red = this.register(new Setting<Integer>("Red", 149, 0, 255, v -> this.box.getValue()));
+    private final Setting<Integer> green = this.register(new Setting<Integer>("Green", 132, 0, 255, v -> this.box.getValue()));
+    private final Setting<Integer> blue = this.register(new Setting<Integer>("Blue", 205, 0, 255, v -> this.box.getValue()));
+    //private final Setting<Integer> alpha = this.register(new Setting<Integer>("Alpha", 255, 0, 255));
+    private final Setting<Integer> boxAlpha = this.register(new Setting<Integer>("BoxAlpha", 129, 0, 255, v -> this.box.getValue()));
     EntityEnderCrystal crystal;
     private EntityLivingBase target;
     private BlockPos pos;
@@ -332,7 +332,7 @@ public class AutoCrystal
     @Override
     public void onRender3D(Render3DEvent event) {
         if (this.pos != null && this.render.getValue().booleanValue() && this.target != null) {
-            RenderUtil.drawBoxESP(this.pos, ClickGui.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()) : new Color(this.red.getValue(), this.green.getValue(), this.blue.getValue(), this.alpha.getValue()), this.outline.getValue(), ClickGui.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()) : new Color(this.cRed.getValue(), this.cGreen.getValue(), this.cBlue.getValue(), this.cAlpha.getValue()), this.lineWidth.getValue().floatValue(), this.outline.getValue(), this.box.getValue(), this.boxAlpha.getValue(), true);
+            RenderUtil.drawBoxESP(this.pos, ClickGui.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()) : new Color(this.red.getValue(), this.green.getValue(), this.blue.getValue(), this.boxAlpha.getValue()), this.outline.getValue(), ClickGui.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()) : new Color(this.cRed.getValue(), this.cGreen.getValue(), this.cBlue.getValue(), this.cAlpha.getValue()), this.lineWidth.getValue().floatValue(), this.outline.getValue(), this.box.getValue(), this.boxAlpha.getValue(), true);
             if (this.renderDmg.getValue().booleanValue()) {
                 double renderDamage = this.calculateDamage((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 1.0, (double) this.pos.getZ() + 0.5, this.target);
                 RenderUtil.drawText(this.pos, (Math.floor(renderDamage) == renderDamage ? Integer.valueOf((int) renderDamage) : String.format("%.1f", renderDamage)) + "");
