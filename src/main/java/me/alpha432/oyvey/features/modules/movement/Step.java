@@ -7,5 +7,12 @@ public class Step
     public Step() {
         super("Step", "Step.", Module.Category.MOVEMENT, true, false, false);
     }
-}
 
+
+
+@Override
+public void onUpdate() {
+    if (ReverseStep.mc.player.onGround) {  ReverseStep.mc.player.motionY -= 1.0;
+    }
+}
+}
