@@ -53,9 +53,19 @@ public class ModuleManager
         this.modules.add(new JumpCircle());
         this.modules.add(new NoRender());
        // NoRender
+      //  Surround
+        this.modules.add(new Surround());
+        this.modules.add(new Quiver());
+       // Quiver
         this.modules.add(new Wireframe());
+        this.modules.add(new Burrow());
+       // Burrow
         this.modules.add(new AutoXP());
+        this.modules.add(new NoSlow());
+       // NoSlow
         this.modules.add(new CustomFov());
+        this.modules.add(new AutoFrameDupe());
+      //  AutoFrameDupe
         this.modules.add(new MultiTask());
         //Velocity
         this.modules.add(new Velocity());
@@ -64,7 +74,7 @@ public class ModuleManager
         
         
        
-        this.modules.add(new HandChams());
+     //   this.modules.add(new HandChams());
         this.modules.add(new FakePlayer());
         this.modules.add(new ReverseStep());
         this.modules.add(new AutoCrystal());

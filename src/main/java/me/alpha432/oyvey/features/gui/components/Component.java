@@ -38,7 +38,7 @@ public class Component
         super(name);
         this.x = x;
         this.y = y;
-        this.width = 96;
+        this.width = 95;
         this.height = 18;
         this.open = open;
         this.setupItems();
@@ -60,10 +60,12 @@ public class Component
         this.drag(mouseX, mouseY);
         counter1 = new int[]{1};
         float totalItemHeight = this.open ? this.getTotalItemHeight() - 2.0f : 0.0f;
+       //   int colorback = ColorUtil.toARGB(ClickGui.getInstance().framered.getValue(), ClickGui.getInstance().framegreen.getValue(), ClickGui.getInstance().frameblue.getValue(), ClickGui.getInstance().frameAlpha.getValue());
         int color = ColorUtil.toARGB(ClickGui.getInstance().red.getValue(), ClickGui.getInstance().green.getValue(), ClickGui.getInstance().blue.getValue(), 255);
         Gui.drawRect(this.x, this.y - 1, this.x + this.width, this.y + this.height - 6, ClickGui.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()).getRGB() : color);
         if (this.open) {
             RenderUtil.drawRect(this.x, (float) this.y + 12.5f, this.x + this.width, (float) (this.y + this.height) + totalItemHeight, 0x77000000);
+       
         }
         OyVey.textManager.drawStringWithShadow(this.getName(), (float) this.x + 3.0f, (float) this.y - 4.0f - (float) OyVeyGui.getClickGui().getTextOffset(), -1);
         if (!open) {
@@ -78,7 +80,7 @@ public class Component
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         //RenderUtilic.glColor(new Color(255, 255, 255, 255));
-        minecraft.getTextureManager().bindTexture(new ResourceLocation("textures/arrow.png"));
+      minecraft.getTextureManager().bindTexture(new ResourceLocation("textures/arrow.png"));
         GlStateManager.translate(getX() + getWidth() - 7, (getY() + 6) - 0.3F, 0.0F);
         GlStateManager.rotate(calculateRotation(angle), 0.0F, 0.0F, 1.0F);
         future.drawModalRect(-5, -5, 0.0F, 0.0F, 10, 10, 10, 10, 10.0F, 10.0F);

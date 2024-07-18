@@ -21,7 +21,7 @@ public class ClickGui
     public Setting<Integer> green = this.register(new Setting<Integer>("Green", 132, 0, 255));
     public Setting<Integer> blue = this.register(new Setting<Integer>("Blue", 205, 0, 255));
     public Setting<Integer> hoverAlpha = this.register(new Setting<Integer>("Alpha", 255, 0, 255));
-
+    
     public Setting<Boolean> rainbow = this.register(new Setting<Boolean>("Rainbow", false));
     public Setting<rainbowMode> rainbowModeHud = this.register(new Setting<Object>("HRainbowMode", rainbowMode.Static, v -> this.rainbow.getValue()));
     public Setting<rainbowModeArray> rainbowModeA = this.register(new Setting<Object>("ARainbowMode", rainbowModeArray.Static, v -> this.rainbow.getValue()));

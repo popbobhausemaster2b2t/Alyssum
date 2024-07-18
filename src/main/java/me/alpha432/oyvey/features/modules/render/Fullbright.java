@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class Fullbright
         extends Module {
     public Setting<Mode> mode = this.register(new Setting<Mode>("Mode", Mode.GAMMA));
-    public Setting<Boolean> effects = this.register(new Setting<Boolean>("Effects", false));
+
     private float previousSetting = 1.0f;
 
     public Fullbright() {
@@ -45,15 +45,6 @@ public class Fullbright
         Fullbright.mc.gameSettings.gammaSetting = this.previousSetting;
     }
 
-    @SubscribeEvent
-    public void onPacketReceive(PacketEvent.Receive event) {
-        if (event.getStage() == 0 && event.getPacket() instanceof SPacketEntityEffect && this.effects.getValue().booleanValue()) {
-            SPacketEntityEffect packet = event.getPacket();
-            if (Fullbright.mc.player != null && packet.getEntityId() == Fullbright.mc.player.getEntityId() && (packet.getEffectId() == 9 || packet.getEffectId() == 15)) {
-                event.setCanceled(true);
-            }
-        }
-    }
 
     public enum Mode {
         GAMMA,

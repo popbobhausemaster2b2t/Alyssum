@@ -1,6 +1,5 @@
 package me.alpha432.oyvey.features.modules.render;
 
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.BossInfoClient;
 import net.minecraft.client.gui.GuiBossOverlay;
@@ -22,10 +21,6 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
-/*
-import me.akaishin.cracked.event.events.PacketEvent;
-import me.akaishin.cracked.features.modules.Module;
-import me.akaishin.cracked.features.setting.Setting;*/
 
 import me.alpha432.oyvey.event.events.PacketEvent;
 import me.alpha432.oyvey.features.modules.Module;

@@ -9,8 +9,12 @@
 	"MixinModelPlayer",
 	"MixinNetworkManager",
 	"MixinRenderEnderCrystal",
+	///"MixinItemRenderer",
+//"MixinEntityRenderer",
 	"MixinRenderLivingBase",
 	"MixinEntityLivingBase",
+	"MixinGuiIngame",
+	"MixinEntityRenderer",
 	"IEntityLivingBase"
 
   ]

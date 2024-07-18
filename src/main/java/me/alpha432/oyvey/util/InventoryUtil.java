@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.util;
+	package me.alpha432.oyvey.util;
 
 import me.alpha432.oyvey.OyVey;
 import net.minecraft.block.Block;
@@ -96,6 +96,22 @@ public class InventoryUtil
         }
         return -1;
     }
+    
+    public static List<Integer> getItemInventory(final Item item) {
+        final List<Integer> ints = new ArrayList<Integer>();
+        for (int i = 9; i < 36; ++i) {
+            final Item target = InventoryUtil.mc.player.inventory.getStackInSlot(i).getItem();
+            if (item instanceof ItemBlock && ((ItemBlock)item).getBlock().equals(item)) {
+                ints.add(i);
+            }
+        }
+        if (ints.size() == 0) {
+            ints.add(-1);
+        }
+        return ints;
+    }
+    
+    
 
     public static int findItemInventorySlot(Item item, boolean offHand) {
         AtomicInteger slot = new AtomicInteger();

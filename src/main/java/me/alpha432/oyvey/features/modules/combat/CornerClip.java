@@ -14,7 +14,7 @@ public final Setting<Boolean> disablee = this.register(new Setting<Boolean>("Dis
 public int disableThingy;
 
 public CornerClip() {
-super("CornerClip", "Phases slightly into the corner of a your surrounding to prevent crystal damage", Module.Category.COMBAT, true, false, false);
+super("CornerClip", "Phases slightly into the corner of a your surrounding to prevent crystal damage", Module.Category.MISC, true, false, false);
 this.setInstance();
 }
 
