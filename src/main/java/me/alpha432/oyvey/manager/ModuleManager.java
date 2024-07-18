@@ -41,6 +41,10 @@ public class ModuleManager
         this.modules.add(new ClickGui());
         this.modules.add(new FontMod());
         this.modules.add(new HUD());
+        this.modules.add(new Killaura());
+        this.modules.add(new CornerClip());
+        this.modules.add(new AntiAFKModule());
+        this.modules.add(new BowSpamModule());
         this.modules.add(new BlockHighlight());
         this.modules.add(new HoleESP());
         this.modules.add(new Skeleton());
