@@ -2,7 +2,6 @@ package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
-import me.alpha432.oyvey.features.modules.client.Colors;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.Minecraft;
@@ -106,9 +105,9 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                         unsetScoreTeamColor();
                 } else {
                     if (Wireframe.getINSTANCE().isOn() && (Wireframe.getINSTANCE()).players.getValue().booleanValue() && entity instanceof EntityPlayer && (Wireframe.getINSTANCE()).mode.getValue().equals(Wireframe.RenderMode.SOLID)) {
-                        this.red = (Colors.getInstance()).red.getValue().intValue() / 255.0F;
-                        this.green = (Colors.getInstance()).green.getValue().intValue() / 255.0F;
-                        this.blue = (Colors.getInstance()).blue.getValue().intValue() / 255.0F;
+                        this.red = (ClickGui.getInstance()).red.getValue().intValue() / 255.0F;
+                        this.green = (ClickGui.getInstance()).green.getValue().intValue() / 255.0F;
+                        this.blue = (ClickGui.getInstance()).blue.getValue().intValue() / 255.0F;
                         GlStateManager.pushMatrix();
                         GL11.glPushAttrib(1048575);
                         GL11.glDisable(3553);
@@ -121,7 +120,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                         if (OyVey.friendManager.isFriend(entity.getName()) || entity == (Minecraft.getMinecraft()).player) {
                             GL11.glColor4f(0.0F, 191.0F, 255.0F, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
                         } else {
-                            GL11.glColor4f((Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : this.red, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : this.green, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : this.blue, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
+                            GL11.glColor4f((ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : this.red, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : this.green, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : this.blue, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
                         }
                         renderModel(entity, f6, f5, f8, f2, f7, f4);
                         GL11.glDisable(2896);
@@ -130,7 +129,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                         if (OyVey.friendManager.isFriend(entity.getName()) || entity == (Minecraft.getMinecraft()).player) {
                             GL11.glColor4f(0.0F, 191.0F, 255.0F, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
                         } else {
-                            GL11.glColor4f((Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : this.red, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : this.green, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : this.blue, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
+                            GL11.glColor4f((ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : this.red, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : this.green, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : this.blue, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
                         }
                         renderModel(entity, f6, f5, f8, f2, f7, f4);
                         GL11.glEnable(2896);
@@ -146,9 +145,9 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                     if (!(entity instanceof EntityPlayer) || !((EntityPlayer) entity).isSpectator())
                         renderLayers(entity, f6, f5, partialTicks, f8, f2, f7, f4);
                     if (Wireframe.getINSTANCE().isOn() && (Wireframe.getINSTANCE()).players.getValue().booleanValue() && entity instanceof EntityPlayer && (Wireframe.getINSTANCE()).mode.getValue().equals(Wireframe.RenderMode.WIREFRAME)) {
-                        this.red = (Colors.getInstance()).red.getValue().intValue() / 255.0F;
-                        this.green = (Colors.getInstance()).green.getValue().intValue() / 255.0F;
-                        this.blue = (Colors.getInstance()).blue.getValue().intValue() / 255.0F;
+                        this.red = (ClickGui.getInstance()).red.getValue().intValue() / 255.0F;
+                        this.green = (ClickGui.getInstance()).green.getValue().intValue() / 255.0F;
+                        this.blue = (ClickGui.getInstance()).blue.getValue().intValue() / 255.0F;
                         GlStateManager.pushMatrix();
                         GL11.glPushAttrib(1048575);
                         GL11.glPolygonMode(1032, 6913);
@@ -161,7 +160,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                         if (OyVey.friendManager.isFriend(entity.getName()) || entity == (Minecraft.getMinecraft()).player) {
                             GL11.glColor4f(0.0F, 191.0F, 255.0F, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
                         } else {
-                            GL11.glColor4f((Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : this.red, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : this.green, (Colors.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((Colors.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : this.blue, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
+                            GL11.glColor4f((ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRed() / 255.0F) : this.red, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getGreen() / 255.0F) : this.green, (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getBlue() / 255.0F) : this.blue, (Wireframe.getINSTANCE()).alpha.getValue().floatValue() / 255.0F);
                         }
                         GL11.glLineWidth((Wireframe.getINSTANCE()).lineWidth.getValue().floatValue());
                         renderModel(entity, f6, f5, f8, f2, f7, f4);

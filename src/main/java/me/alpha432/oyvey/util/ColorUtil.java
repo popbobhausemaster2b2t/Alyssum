@@ -1,7 +1,6 @@
 package me.alpha432.oyvey.util;
 
 import me.alpha432.oyvey.features.modules.client.ClickGui;
-import me.alpha432.oyvey.features.modules.client.Colors;
 
 import java.awt.*;
 
@@ -24,7 +23,7 @@ public class ColorUtil {
 
     public static Color rainbow(int delay) {
         double rainbowState = Math.ceil((double) (System.currentTimeMillis() + (long) delay) / 20.0);
-        return Color.getHSBColor((float) ((rainbowState %= 360.0) / 360.0), Colors.getInstance().rainbowSaturation.getValue().floatValue() / 255.0f, Colors.getInstance().rainbowBrightness.getValue().floatValue() / 255.0f);
+        return Color.getHSBColor((float) ((rainbowState %= 360.0) / 360.0), ClickGui.getInstance().rainbowSaturation.getValue().floatValue() / 255.0f, ClickGui.getInstance().rainbowBrightness.getValue().floatValue() / 255.0f);
     }
 
     public static int toRGBA(float[] colors) {

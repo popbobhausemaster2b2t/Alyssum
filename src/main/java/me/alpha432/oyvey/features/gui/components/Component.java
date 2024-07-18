@@ -2,16 +2,19 @@ package me.alpha432.oyvey.features.gui.components;
 
 import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.features.Feature;
+import me.alpha432.oyvey.features.future.future;
 import me.alpha432.oyvey.features.gui.OyVeyGui;
 import me.alpha432.oyvey.features.gui.components.items.Item;
 import me.alpha432.oyvey.features.gui.components.items.buttons.Button;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
-import me.alpha432.oyvey.features.modules.client.Colors;
 import me.alpha432.oyvey.util.ColorUtil;
 import me.alpha432.oyvey.util.RenderUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 
@@ -28,15 +31,18 @@ public class Component
     private int height;
     private boolean open;
     private boolean hidden = false;
+    private int angle; //Future Ext
+    private Minecraft minecraft = Minecraft.getMinecraft();
 
     public Component(String name, int x, int y, boolean open) {
         super(name);
         this.x = x;
         this.y = y;
-        this.width = 98;
+        this.width = 96;
         this.height = 18;
         this.open = open;
         this.setupItems();
+        this.angle = 180; //Future Ext
     }
 
     public void setupItems() {
@@ -54,13 +60,31 @@ public class Component
         this.drag(mouseX, mouseY);
         counter1 = new int[]{1};
         float totalItemHeight = this.open ? this.getTotalItemHeight() - 2.0f : 0.0f;
-        int colorback = ColorUtil.toARGB(Colors.getInstance().red.getValue(), Colors.getInstance().green.getValue(), Colors.getInstance().blue.getValue(), Colors.getInstance().hoverAlpha.getValue());
-        int color = ColorUtil.toARGB(Colors.getInstance().red.getValue(), Colors.getInstance().green.getValue(), Colors.getInstance().blue.getValue(), 255);
-        Gui.drawRect(this.x, this.y - 1, this.x + this.width, this.y + this.height - 6, Colors.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(Colors.getInstance().rainbowHue.getValue()).getRGB() : color);
+        int color = ColorUtil.toARGB(ClickGui.getInstance().red.getValue(), ClickGui.getInstance().green.getValue(), ClickGui.getInstance().blue.getValue(), 255);
+        Gui.drawRect(this.x, this.y - 1, this.x + this.width, this.y + this.height - 6, ClickGui.getInstance().rainbow.getValue() != false ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()).getRGB() : color);
         if (this.open) {
             RenderUtil.drawRect(this.x, (float) this.y + 12.5f, this.x + this.width, (float) (this.y + this.height) + totalItemHeight, 0x77000000);
         }
         OyVey.textManager.drawStringWithShadow(this.getName(), (float) this.x + 3.0f, (float) this.y - 4.0f - (float) OyVeyGui.getClickGui().getTextOffset(), -1);
+        if (!open) {
+            if (this.angle > 0) {
+                this.angle -= 6;
+                }
+                } else if (this.angle < 180) {
+                    this.angle += 6;
+                    }
+
+    if (ClickGui.getInstance().future.getValue()) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        //RenderUtilic.glColor(new Color(255, 255, 255, 255));
+        minecraft.getTextureManager().bindTexture(new ResourceLocation("textures/arrow.png"));
+        GlStateManager.translate(getX() + getWidth() - 7, (getY() + 6) - 0.3F, 0.0F);
+        GlStateManager.rotate(calculateRotation(angle), 0.0F, 0.0F, 1.0F);
+        future.drawModalRect(-5, -5, 0.0F, 0.0F, 10, 10, 10, 10, 10.0F, 10.0F);
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+    }
         if (this.open) {
             float y = (float) (this.getY() + this.getHeight()) - 3.0f;
             for (Item item : this.getItems()) {
@@ -74,6 +98,19 @@ public class Component
         }
     }
 
+    //added this method in, just to fix shit. It is from uz1 class in future
+    public static float calculateRotation(float var0) {
+        if ((var0 %= 360.0F) >= 180.0F) {
+            var0 -= 360.0F;
+        }
+
+        if (var0 < -180.0F) {
+            var0 += 360.0F;
+        }
+
+        return var0;
+    }
+    
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (mouseButton == 0 && this.isHovering(mouseX, mouseY)) {
             this.x2 = this.x - mouseX;

@@ -47,7 +47,7 @@ public class OyVeyGui
     private void load() {
         int x = -84;
         for (final Module.Category category : OyVey.moduleManager.getCategories()) {
-            this.components.add(new Component(category.getName(), x += 100, 6, true) {
+            this.components.add(new Component(category.getName(), x += 100, 4, true) {
 
                 @Override
                 public void setupItems() {
@@ -118,6 +118,8 @@ public class OyVeyGui
         return null;
     }
 
+    
+    
     public void keyTyped(char typedChar, int keyCode) throws IOException {
         super.keyTyped(typedChar, keyCode);
         this.components.forEach(component -> component.onKeyTyped(typedChar, keyCode));

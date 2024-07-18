@@ -1,13 +1,17 @@
 package me.alpha432.oyvey.features.gui.components.items.buttons;
 
+import me.alpha432.oyvey.features.future.future;
 import me.alpha432.oyvey.features.gui.OyVeyGui;
 import me.alpha432.oyvey.features.gui.components.Component;
 import me.alpha432.oyvey.features.gui.components.items.Item;
 import me.alpha432.oyvey.features.modules.Module;
+import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.client.HUD;
 import me.alpha432.oyvey.features.setting.Bind;
 import me.alpha432.oyvey.features.setting.Setting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -19,6 +23,7 @@ public class ModuleButton
         extends Button {
     private final Module module;
     private final ResourceLocation logo = new ResourceLocation("textures/oyvey.png");
+    private int progress; //future gear option
     private List<Item> items = new ArrayList<Item>();
     private boolean subOpen;
 
@@ -26,6 +31,19 @@ public class ModuleButton
         super(module.getName());
         this.module = module;
         this.initSettings();
+        this.progress = 0; //future gear = 0
+    }
+    
+    public static float calculateRotation(float var0) {
+        if ((var0 %= 360.0F) >= 180.0F) {
+            var0 -= 360.0F;
+        }
+
+        if (var0 < -180.0F) {
+            var0 += 360.0F;
+        }
+
+        return var0;
     }
 
     public static void drawCompleteImage(float posX, float posY, int width, int height) {
@@ -76,9 +94,22 @@ public class ModuleButton
             if (HUD.getInstance().magenDavid.getValue().booleanValue()) {
                 mc.getTextureManager().bindTexture(this.logo);
                 ModuleButton.drawCompleteImage(this.x - 1.5f + (float) this.width - 7.4f, this.y - 2.2f - (float) OyVeyGui.getClickGui().getTextOffset(), 8, 8);
-                
             }
-            if (this.subOpen) {
+            if (ClickGui.getInstance().future.getValue()) {
+                GlStateManager.pushMatrix();
+                GlStateManager.enableBlend();
+//                RenderMethods.glColor(new Color(0.0F, 0.0F, 100.0F, 1.0F));
+                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gear.png"));
+                GlStateManager.translate(getX() + getWidth() - 6.7F, getY() + 7.7F - 0.3F, 0.0F);
+                GlStateManager.rotate(calculateRotation((float)this.progress), 0.0F, 0.0F, 1.0F);
+                future.drawModalRect(-5, -5, 0.0F, 0.0F, 10, 10, 10, 10, 10.0F, 10.0F);
+                GlStateManager.disableBlend();
+                GlStateManager.popMatrix();
+            }
+            
+            if (this.subOpen) {    	
+            	++progress;
+    
                 float height = 1.0f;
                 for (Item item : this.items) {
                     Component.counter1[0] = Component.counter1[0] + 1;
